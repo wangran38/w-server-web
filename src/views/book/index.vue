@@ -22,24 +22,23 @@
     </div>
 
     <div class="filter-container" style="margin: 0 0 2% 0" v-if="searchSeen">
-
       <!-- 第一个查找框 -->
-  <el-input
-    v-model="listQuery.name"
-    placeholder="事件名称"
-    style="width: 200px"
-    class="filter-item"
-    @keyup.enter.native="handleFilter"
-  />
+      <el-input
+        v-model="listQuery.name"
+        placeholder="事件名称"
+        style="width: 200px"
+        class="filter-item"
+        @keyup.enter.native="handleFilter"
+      />
 
-  <!-- 第二个查找框 -->
-  <el-input
-    v-model="listQuery.content"
-    placeholder="详细内容"
-    style="width: 200px"
-    class="filter-item"
-    @keyup.enter.native="handleFilter"
-  />
+      <!-- 第二个查找框 -->
+      <el-input
+        v-model="listQuery.content"
+        placeholder="详细内容"
+        style="width: 200px"
+        class="filter-item"
+        @keyup.enter.native="handleFilter"
+      />
       <el-input
         v-model="listQuery.chaptername"
         placeholder="章节名称 "
@@ -48,11 +47,11 @@
         @keyup.enter.native="handleFilter"
       />
       <!--<el-select v-model="listQuery.importance" placeholder="Imp" clearable style="width: 90px" class="filter-item">
-        <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
-      </el-select>-->
+          <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
+        </el-select>-->
       <!--<el-select v-model="listQuery.type" placeholder="Type" clearable class="filter-item" style="width: 130px">
-        <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
-      </el-select>-->
+          <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
+        </el-select>-->
       <el-select
         v-model="listQuery.sort"
         style="width: 140px"
@@ -67,14 +66,22 @@
         />
       </el-select>
 
-      <el-button v-waves  class="filter-item"  type="primary"  icon="el-icon-search"  @click="handleFilter"  > 提交</el-button>
+      <el-button
+        v-waves
+        class="filter-item"
+        type="primary"
+        icon="el-icon-search"
+        @click="handleFilter"
+      >
+        提交</el-button
+      >
 
       <!--<el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
-      下载表格
-      </el-button>-->
+        下载表格
+        </el-button>-->
       <!--<el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
-        展开列表
-      </el-checkbox>-->
+          展开列表
+        </el-checkbox>-->
     </div>
 
     <el-table
@@ -105,10 +112,10 @@
         </template>
       </el-table-column>
       <!-- <el-table-column label="分类图片" width="110px" align="center">
-        <template slot-scope="{row}">
-         <el-avatar :src="row.image"></el-avatar>
-        </template>
-      </el-table-column> -->
+          <template slot-scope="{row}">
+          <el-avatar :src="row.image"></el-avatar>
+          </template>
+        </el-table-column> -->
       <el-table-column label="章节名称" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.chaptername }}</span>
@@ -125,35 +132,35 @@
         </template>
       </el-table-column>
       <!-- <el-table-column label="详细内容" align="center">
-        <template slot-scope="{ row }">
-          <span>{{ row.content }}</span>
-        </template>
-      </el-table-column> -->
+          <template slot-scope="{ row }">
+            <span>{{ row.content }}</span>
+          </template>
+        </el-table-column> -->
 
       <!-- <el-table-column label="关键字" width="110px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.keywords }}</span>
-        </template>
-      </el-table-column> -->
+          <template slot-scope="{row}">
+            <span>{{ row.keywords }}</span>
+          </template>
+        </el-table-column> -->
       <!-- <el-table-column
-      prop="showStatus"
-      header-align="center"
-      align="center"
-      label="显示状态" width="110px">
-      <template slot-scope="{row}">
-        <el-switch
-          v-model="row.isshow"
-          :active-value="row.isshow"
-          active-text="启用"
-          active-color="#13ce66"
-          inactive-color="#ff4949"
-          >
-        </el-switch> -->
+        prop="showStatus"
+        header-align="center"
+        align="center"
+        label="显示状态" width="110px">
+        <template slot-scope="{row}">
+          <el-switch
+            v-model="row.isshow"
+            :active-value="row.isshow"
+            active-text="启用"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            >
+          </el-switch> -->
 
       <!-- {{row.isshow}}
-        {{typeof(row.isshow)}} -->
+          {{typeof(row.isshow)}} -->
       <!-- </template>
-    </el-table-column> -->
+      </el-table-column> -->
 
       <el-table-column label="创建日期" align="center">
         <template slot-scope="{ row }">
@@ -163,23 +170,25 @@
         </template>
       </el-table-column>
 
-
       <el-table-column
         label="操作"
         align="center"
-        width="230"
+        width="280"
         class-name="small-padding fixed-width"
       >
         <template slot-scope="{ row, $index }">
+          <el-button type="primary" size="mini" @click="handleUplod(row)">
+            添加视频
+          </el-button>
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
             修改
           </el-button>
           <!--<el-button v-if="row.status!='published'" size="mini" type="success" @click="handleModifyStatus(row,'published')">
-            详细
-          </el-button>-->
+              详细
+            </el-button>-->
           <!--<el-button v-if="row.status!='draft'" size="mini" @click="handleModifyStatus(row,'draft')">
-            Draft
-          </el-button>-->
+              Draft
+            </el-button>-->
           <el-button
             v-if="row.status != 'deleted'"
             size="mini"
@@ -229,25 +238,25 @@
           </el-cascader>
         </el-form-item>
         <!--<el-form-item label="Date" prop="timestamp">
-          <el-date-picker v-model="temp.timestamp" type="datetime" placeholder="Please pick a date" />
-        </el-form-item>-->
+            <el-date-picker v-model="temp.timestamp" type="datetime" placeholder="Please pick a date" />
+          </el-form-item>-->
         <!-- <el-form-item label="分类标题" prop="title">
-          <el-input v-model="temp.title" />
-        </el-form-item> -->
+            <el-input v-model="temp.title" />
+          </el-form-item> -->
         <!-- <el-form-item label="分类图片" prop="image">
-          <el-upload
-            class="avatar-uploader"
-            action="http://file.988cj.com/group1/upload"
-            :show-file-list="false"
-            :on-success="handleAvatarSuccess"
-            :before-upload="beforeAvatarUpload"
-          >
-            <img v-if="this.temp.image" :src="temp.image" class="avatar" />
+            <el-upload
+              class="avatar-uploader"
+              action="http://file.988cj.com/group1/upload"
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+              :before-upload="beforeAvatarUpload"
+            >
+              <img v-if="this.temp.image" :src="temp.image" class="avatar" />
 
-            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-          </el-upload>
-          <el-input v-model="temp.image" type="hidden" />
-        </el-form-item> -->
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
+            <el-input v-model="temp.image" type="hidden" />
+          </el-form-item> -->
         <el-form-item label="章节名称" prop="chaptername">
           <el-input v-model="temp.chaptername" />
         </el-form-item>
@@ -259,13 +268,17 @@
         </el-form-item>
         <el-form-item label="详细内容" prop="content">
           <!-- <el-input type="textarea" v-model="temp.content" /> -->
-          <quill-editor ref="myQuillEditor" v-model="temp.content" style="width: 180%;height: 120%;box-sizing: border-box;" />
+          <quill-editor
+            ref="myQuillEditor"
+            v-model="temp.content"
+            style="width: 180%; height: 120%; box-sizing: border-box"
+          />
           <!-- <template>
-            <div class="editor-container">
+              <div class="editor-container">
 
-    <markdown-editor v-model="temp.content" height="400px" />
-  </div>
-</template> -->
+      <markdown-editor v-model="temp.content" height="400px" />
+    </div>
+  </template> -->
         </el-form-item>
 
         <el-form-item label="是否显示" prop="isshow">
@@ -287,7 +300,40 @@
         </el-button>
       </div>
     </el-dialog>
+    <!-- 212 -->
+    <el-dialog :visible.sync="dialogFormVideo">
+      <el-form
+        ref="dataForm1"
+        :rules="rules"
+        :model="temp"
+        label-position="left"
+        label-width="70px"
+        style="width: 400px; margin-left: 50px"
+      >
+        <el-form-item label="视频名称">
+          <el-input v-model="videotemp.title" />
+        </el-form-item>
 
+        <el-upload
+          class="upload-demo"
+          :action="action"
+          :headers="headerObj"
+          :on-success="handleSuccess"
+          :limit="5"
+          list-type="video"
+        >
+          <el-button size="small" type="primary">点击上传</el-button>
+          <div slot="tip" class="el-upload__tip">
+            只能上传jpg/png文件，且不超过500kb
+          </div>
+        </el-upload>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVideo = false"> 取消 </el-button>
+        <el-button type="primary" @click="wanghuiqing()"> 提交 </el-button>
+      </div>
+    </el-dialog>
+    <!-- 添加视频尾巴 -->
     <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
       <el-table
         :data="pvData"
@@ -333,13 +379,22 @@
 }
 </style>
 <script>
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
- import { quillEditor, Quill } from 'vue-quill-editor'
-import { getlist, getoptions, add, edit, del } from "@/api/book/index";
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
+import "quill/dist/quill.bubble.css";
+import { quillEditor, Quill } from "vue-quill-editor";
+import {
+  getlist,
+  getoptions,
+  add,
+  edit,
+  del,
+  get,
+  addvdo,
+} from "@/api/book/index";
 import waves from "@/directive/waves"; // waves directive 点击水波纹
 import { parseTime } from "@/utils";
+import { getToken } from "@/utils/auth";
 // import MarkdownEditor from '@/components/MarkdownEditor'
 import Pagination from "@/components/Pagination"; // secondary package based on el-pagination
 
@@ -351,7 +406,7 @@ export default {
   //讲师列表
 
   name: "",
-  components: { Pagination,quillEditor },
+  components: { Pagination, quillEditor },
   directives: { waves },
   filters: {
     statusFilter(status) {
@@ -372,7 +427,12 @@ export default {
       tableKey: 0,
       list: null,
       total: 0,
+      action: `${process.env.VUE_APP_BASE_API}/admin/mp4_upload`,
+      headerObj: {
+        Authorization: getToken(),
+      },
       listLoading: true,
+
       listQuery: {
         limit: 20,
         page: 1,
@@ -380,10 +440,9 @@ export default {
         username: undefined,
         type: undefined,
         sort: "+id",
-        chaptername: '', // 新增的title搜索条件  王辉庆编写
-        name: '', // 新增的事件名称的搜索条件
-        content: '', // 新增详细内容的搜索条件
-
+        chaptername: "", // 新增的title搜索条件  王辉庆编写
+        name: "", // 新增的事件名称的搜索条件
+        // content: '', // 新增详细内容的搜索条件
       },
       importanceOptions: [1, 2, 3],
       sortOptions: [
@@ -395,13 +454,19 @@ export default {
       temp: {
         id: undefined,
         pid: undefined,
-        chaptername: '',
-        name: '',
+        chaptername: "",
+        name: "",
         level: undefined,
         content: "",
       },
+      videotemp: {
+        title: "",
+        fileurl: [],
+        book_id: undefined,
+      },
       imgurl: "",
       dialogFormVisible: false,
+      dialogFormVideo: false,
       dialogStatus: "",
       textMap: {
         update: "编辑",
@@ -433,6 +498,36 @@ export default {
     this.getList(), this.groupoption();
   },
   methods: {
+    handleSuccess(res, file, fileList) {
+      // // 图片上传服务器后的回调
+      // console.log(res);
+      // if (res.code === 200) {
+      //   this.videotemp.fileurl = res.data; // 以方法的形式调用就可以了，每一张图片都会到这个方法里
+      //   this.videotemp.fileurl.push({
+      //     title: this.videotemp.title,
+      //     url: res.data,
+      //   });
+      //   this.videotemp.title = "";
+      // } else {
+      //   this.delShowFile(file, fileList);
+      //   this.$message.error("上传服务器失败!");
+      // }
+      // 图片上传服务器后的回调
+      console.log(res);
+      if (res.code === 200) {
+        if (!Array.isArray(this.videotemp.fileurl)) {
+          this.videotemp.fileurl = [];
+        }
+        this.videotemp.fileurl.push({
+          title: this.videotemp.title,
+          url: res.data,
+        });
+        
+      } else {
+        this.delShowFile(file, fileList);
+        this.$message.error("上传服务器失败!");
+      }
+    },
     getList() {
       this.listLoading = true;
       getlist(this.listQuery).then((response) => {
@@ -475,8 +570,8 @@ export default {
       this.temp = {
         id: undefined,
         pid: undefined,
-        chaptername: '',
-        name: '',
+        chaptername: "",
+        name: "",
         level: undefined,
         content: "",
       };
@@ -487,6 +582,44 @@ export default {
       this.dialogFormVisible = true;
       this.$nextTick(() => {
         this.$refs["dataForm"].clearValidate();
+      });
+    },
+    wanghuiqing() {
+      // console.log(this.videotemp)
+      // addvdo(this.videotemp)
+      // .then(response => {
+      //   // 处理成功情况，更新 UI 或显示成功消息
+      //   console.log('视频添加成功:', response);
+      //   this.getList(); // 假设这个方法在添加新视频后更新视频列表
+      //   this.$message.success('视频添加成功！'); // 使用 element-ui message 组件显示成功消息
+      //   this.videotemp = {
+      //   title: "",
+      //   fileurl: [],
+      //   book_id: undefined,
+      // };
+      // })
+      // .catch(error => {
+      //   // 处理错误情况，显示错误消息或记录错误日志
+      //   console.error('添加视频时出错:', error);
+      //   this.$message.error('视频添加失败，请重试！'); // 使用 element-ui message 组件显示错误消息
+      // });
+      this.videotemp.fileurl.forEach((video) => {
+        addvdo({
+          title: video.title,
+          fileurl: video.url,
+          book_id: this.videotemp.book_id,
+        })
+          .then((response) => {
+            // 处理成功情况
+            console.log("视频添加成功:", response);
+            this.getList(); // 假设这个方法在添加新视频后更新视频列表
+            this.$message.success("视频添加成功！");
+          })
+          .catch((error) => {
+            // 处理错误情况
+            console.error("添加视频时出错:", error);
+            this.$message.error("视频添加失败，请重试！");
+          });
       });
     },
     createData() {
@@ -532,8 +665,25 @@ export default {
           console.log(error);
         });
     },
+    handleUplod(row) {
+      console.log(row);
+      this.videotemp.book_id = row.id;
+      this.dialogFormVideo = true;
+      this.$nextTick(() => {
+        this.$refs["dataForm1"].clearValidate();
+      });
+    },
     handleUpdate(row) {
       this.temp = Object.assign({}, row); // copy obj
+      get(row)
+        .then((response) => {
+          // console.log(response)
+          console.log(response.data.content);
+          this.temp.content = response.data.content;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       this.temp.timestamp = new Date(this.temp.timestamp);
       this.dialogStatus = "update";
       this.dialogFormVisible = true;

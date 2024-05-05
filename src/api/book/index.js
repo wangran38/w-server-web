@@ -39,3 +39,19 @@ export function del(params) {
     data: params
   })
 }
+
+export function get(params) {
+  return request({
+    url: '/admin/getbook',
+    method: 'post',
+    data: params
+  })
+}
+
+export function addvdo(params) {
+  return request({
+    url: '/admin/addbookfile',
+    method: 'post',
+    data: params
+  })
+}
